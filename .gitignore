@@ -1,5 +1,16 @@
-# Compiled class file
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# VS Code
+.vscode/
+
+# Java
 *.class
+
+# macOS
+.DS_Store
 
 # Log file
 *.log
