@@ -1,4 +1,4 @@
-# [1446 - Consecutive Characters]
+# 1446. Consecutive Characters
 
 ## link
 LeetCode: https://leetcode.com/problems/consecutive-characters/

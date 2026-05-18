@@ -1,4 +1,4 @@
-# [1 - Two sum]
+# 1. Two sum
 
 ## link
 LeetCode: https://leetcode.com/problems/two-sum
