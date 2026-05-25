@@ -1,0 +1,38 @@
+name: Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Generate progress
+        run: python3 scripts/generate_progress.py
+
+      - name: Check generated progress is up to date
+        run: git diff --exit-code PROGRESS.md
+
+      - name: Compile Java solutions
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            out_dir="$(mktemp -d)"
+            tmp_file="$out_dir/Solution.java"
+            printf 'import java.util.*;\n' > "$tmp_file"
+            cat "$file" >> "$tmp_file"
+            javac --release 21 -d "$out_dir" "$tmp_file"
+            rm -rf "$out_dir"
+          done < <(find leetcode/java -name Solution.java -print0)

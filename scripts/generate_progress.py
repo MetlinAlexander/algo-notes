@@ -2,131 +2,104 @@ from pathlib import Path
 import re
 import sys
 
+
 ROOT = Path(__file__).resolve().parents[1]
-
-PLATFORMS = ["leetcode"]
-DIFFICULTIES = ["easy", "medium", "hard"]
-
-LANGUAGE_NAMES = {
-    "java": "Java",
-    "python": "Python",
-    "cpp": "C++",
-}
-
-SOLUTION_FILES = {
-    "java": "Solution.java",
-    "python": "solution.py",
-    "cpp": "solution.cpp",
-}
+PLATFORM = "leetcode"
+LANGUAGE = "java"
+LANGUAGE_LABEL = "Java"
+DIFFICULTIES = ("easy", "medium", "hard")
+SOLUTION_FILE = "Solution.java"
+NOTES_FILE = "notes.md"
 
 
-def parse_problem_name(folder_name: str):
-    match = re.match(r"^(\d+)[-_](.+)$", folder_name)
-
+def title_from_folder(folder_name: str) -> str:
+    match = re.match(r"^(\d{4})-(.+)$", folder_name)
     if not match:
-        return None, folder_name.replace("-", " ")
+        return folder_name
 
-    problem_id = match.group(1)
-    title = match.group(2).replace("-", " ").replace("_", " ")
+    problem_id, slug = match.groups()
+    title = slug.replace("-", " ")
+    return f"{problem_id}. {title}"
 
-    return int(problem_id), f"{problem_id}. {title}"
 
-
-def path_link(path: Path) -> str:
+def repo_path(path: Path) -> str:
     return path.relative_to(ROOT).as_posix()
 
 
-def main():
+def build_rows() -> tuple[list[dict[str, str]], list[str]]:
     rows = []
     errors = []
+    java_root = ROOT / PLATFORM / LANGUAGE
 
-    for platform in PLATFORMS:
-        platform_dir = ROOT / platform
-
-        if not platform_dir.exists():
+    for difficulty in DIFFICULTIES:
+        difficulty_dir = java_root / difficulty
+        if not difficulty_dir.exists():
             continue
 
-        for lang_dir in platform_dir.iterdir():
-            if not lang_dir.is_dir():
+        for problem_dir in sorted(difficulty_dir.iterdir(), key=lambda path: path.name):
+            if not problem_dir.is_dir():
                 continue
 
-            lang = lang_dir.name
-            lang_name = LANGUAGE_NAMES.get(lang, lang)
+            solution_path = problem_dir / SOLUTION_FILE
+            notes_path = problem_dir / NOTES_FILE
 
-            for difficulty in DIFFICULTIES:
-                difficulty_dir = lang_dir / difficulty
+            if not solution_path.exists():
+                errors.append(f"Missing {SOLUTION_FILE}: {repo_path(problem_dir)}")
+            if not notes_path.exists():
+                errors.append(f"Missing {NOTES_FILE}: {repo_path(problem_dir)}")
 
-                if not difficulty_dir.exists():
-                    continue
-
-                for problem_dir in sorted(difficulty_dir.iterdir()):
-                    if not problem_dir.is_dir():
-                        continue
-
-                    problem_id, problem_title = parse_problem_name(problem_dir.name)
-
-                    expected_solution = SOLUTION_FILES.get(lang)
-                    solution_path = problem_dir / expected_solution if expected_solution else None
-                    notes_path = problem_dir / "notes.md"
-
-                    if expected_solution and not solution_path.exists():
-                        errors.append(
-                            f"Missing {expected_solution}: {path_link(problem_dir)}"
-                        )
-
-                    if not notes_path.exists():
-                        errors.append(
-                            f"Missing notes.md: {path_link(problem_dir)}"
-                        )
-
-                    solution_cell = (
-                        f"[{expected_solution}]({path_link(solution_path)})"
-                        if solution_path and solution_path.exists()
-                        else "—"
-                    )
-
-                    notes_cell = (
-                        f"[notes.md]({path_link(notes_path)})"
+            rows.append(
+                {
+                    "platform": PLATFORM,
+                    "difficulty": difficulty,
+                    "problem": title_from_folder(problem_dir.name),
+                    "language": LANGUAGE_LABEL,
+                    "solution": (
+                        f"[{SOLUTION_FILE}]({repo_path(solution_path)})"
+                        if solution_path.exists()
+                        else "-"
+                    ),
+                    "notes": (
+                        f"[{NOTES_FILE}]({repo_path(notes_path)})"
                         if notes_path.exists()
-                        else "—"
-                    )
+                        else "-"
+                    ),
+                }
+            )
 
-                    rows.append({
-                        "platform": platform.capitalize(),
-                        "difficulty": difficulty.capitalize(),
-                        "problem": problem_title,
-                        "language": lang_name,
-                        "solution": solution_cell,
-                        "notes": notes_cell,
-                        "sort_id": problem_id if problem_id is not None else 10**9,
-                    })
+    return rows, errors
 
-    rows.sort(key=lambda row: (row["platform"], row["language"], row["difficulty"], row["sort_id"], row["problem"]))
 
-    progress = []
-    progress.append("# Progress")
-    progress.append("")
-    progress.append(f"Total solved: **{len(rows)}**")
-    progress.append("")
-    progress.append("| Platform | Difficulty | Problem | Language | Solution | Notes |")
-    progress.append("|---|---|---|---|---|---|")
+def render_progress(rows: list[dict[str, str]]) -> str:
+    lines = [
+        "# Progress",
+        "",
+        "| Platform | Difficulty | Problem | Language | Solution | Notes |",
+        "|---|---|---|---|---|---|",
+    ]
 
     for row in rows:
-        progress.append(
+        lines.append(
             f"| {row['platform']} | {row['difficulty']} | {row['problem']} | "
             f"{row['language']} | {row['solution']} | {row['notes']} |"
         )
 
-    progress.append("")
+    lines.append("")
+    return "\n".join(lines)
 
-    (ROOT / "PROGRESS.md").write_text("\n".join(progress), encoding="utf-8")
+
+def main() -> int:
+    rows, errors = build_rows()
+    (ROOT / "PROGRESS.md").write_text(render_progress(rows), encoding="utf-8")
 
     if errors:
         print("Repository structure errors:")
         for error in errors:
             print(f"- {error}")
-        sys.exit(1)
+        return 1
+
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
