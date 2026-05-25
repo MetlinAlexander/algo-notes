@@ -1,6 +1,10 @@
 # algo-notes
 
 Репозиторий с решениями задач и заметками по алгоритмам и структурам данных.
+## Progress
+![CI](https://github.com/MetlinAlexander/algo-notes/actions/workflows/check.yml/badge.svg)
+
+Full progress: [PROGRESS.md](PROGRESS.md)
 
 ## Платформы
 
