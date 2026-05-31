@@ -4,6 +4,7 @@
 |---|---|---|---|---|---|
 | leetcode | easy | 0001. two sum | Java | [Solution.java](leetcode/java/easy/0001-two-sum/Solution.java) | [notes.md](leetcode/java/easy/0001-two-sum/notes.md) |
 | leetcode | easy | 0125. valid palindrome | Java | [Solution.java](leetcode/java/easy/0125-valid-palindrome/Solution.java) | [notes.md](leetcode/java/easy/0125-valid-palindrome/notes.md) |
+| leetcode | easy | 0206. reverse linked list | Java | [Solution.java](leetcode/java/easy/0206-reverse-linked-list/Solution.java) | [notes.md](leetcode/java/easy/0206-reverse-linked-list/notes.md) |
 | leetcode | easy | 0228. summary ranges | Java | [Solution.java](leetcode/java/easy/0228-summary-ranges/Solution.java) | [notes.md](leetcode/java/easy/0228-summary-ranges/notes.md) |
 | leetcode | easy | 0283. move zeroes | Java | [Solution.java](leetcode/java/easy/0283-move-zeroes/Solution.java) | [notes.md](leetcode/java/easy/0283-move-zeroes/notes.md) |
 | leetcode | easy | 1446. consecutive characters | Java | [Solution.java](leetcode/java/easy/1446-consecutive-characters/Solution.java) | [notes.md](leetcode/java/easy/1446-consecutive-characters/notes.md) |
