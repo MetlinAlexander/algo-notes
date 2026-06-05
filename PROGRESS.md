@@ -14,4 +14,5 @@
 | leetcode | medium | 0380. insert delete getrandom o1 | Java | [Solution.java](leetcode/java/medium/0380-insert-delete-getrandom-o1/Solution.java) | [notes.md](leetcode/java/medium/0380-insert-delete-getrandom-o1/notes.md) |
 | leetcode | medium | 0443. string compression | Java | [Solution.java](leetcode/java/medium/0443-string-compression/Solution.java) | [notes.md](leetcode/java/medium/0443-string-compression/notes.md) |
 | leetcode | medium | 0560. subarray sum equals k | Java | [Solution.java](leetcode/java/medium/0560-subarray-sum-equals-k/Solution.java) | [notes.md](leetcode/java/medium/0560-subarray-sum-equals-k/notes.md) |
+| leetcode | medium | 0567. permutation in string | Java | [Solution.java](leetcode/java/medium/0567-permutation-in-string/Solution.java) | [notes.md](leetcode/java/medium/0567-permutation-in-string/notes.md) |
 | leetcode | medium | 1493. longest subarray of 1s after deleting one element | Java | [Solution.java](leetcode/java/medium/1493-longest-subarray-of-1s-after-deleting-one-element/Solution.java) | [notes.md](leetcode/java/medium/1493-longest-subarray-of-1s-after-deleting-one-element/notes.md) |
