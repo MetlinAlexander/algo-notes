@@ -8,6 +8,7 @@
 | leetcode | easy | 0228. summary ranges | Java | [Solution.java](leetcode/java/easy/0228-summary-ranges/Solution.java) | [notes.md](leetcode/java/easy/0228-summary-ranges/notes.md) |
 | leetcode | easy | 0283. move zeroes | Java | [Solution.java](leetcode/java/easy/0283-move-zeroes/Solution.java) | [notes.md](leetcode/java/easy/0283-move-zeroes/notes.md) |
 | leetcode | easy | 1446. consecutive characters | Java | [Solution.java](leetcode/java/easy/1446-consecutive-characters/Solution.java) | [notes.md](leetcode/java/easy/1446-consecutive-characters/notes.md) |
+| leetcode | medium | 0022. generate parentheses | Java | [Solution.java](leetcode/java/medium/0022-generate-parentheses/Solution.java) | [notes.md](leetcode/java/medium/0022-generate-parentheses/notes.md) |
 | leetcode | medium | 0049. group anagrams | Java | [Solution.java](leetcode/java/medium/0049-group-anagrams/Solution.java) | [notes.md](leetcode/java/medium/0049-group-anagrams/notes.md) |
 | leetcode | medium | 0146. lru cache | Java | [Solution.java](leetcode/java/medium/0146-lru-cache/Solution.java) | [notes.md](leetcode/java/medium/0146-lru-cache/notes.md) |
 | leetcode | medium | 0380. insert delete getrandom o1 | Java | [Solution.java](leetcode/java/medium/0380-insert-delete-getrandom-o1/Solution.java) | [notes.md](leetcode/java/medium/0380-insert-delete-getrandom-o1/notes.md) |
