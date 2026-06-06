@@ -16,3 +16,4 @@
 | leetcode | medium | 0560. subarray sum equals k | Java | [Solution.java](leetcode/java/medium/0560-subarray-sum-equals-k/Solution.java) | [notes.md](leetcode/java/medium/0560-subarray-sum-equals-k/notes.md) |
 | leetcode | medium | 0567. permutation in string | Java | [Solution.java](leetcode/java/medium/0567-permutation-in-string/Solution.java) | [notes.md](leetcode/java/medium/0567-permutation-in-string/notes.md) |
 | leetcode | medium | 1493. longest subarray of 1s after deleting one element | Java | [Solution.java](leetcode/java/medium/1493-longest-subarray-of-1s-after-deleting-one-element/Solution.java) | [notes.md](leetcode/java/medium/1493-longest-subarray-of-1s-after-deleting-one-element/notes.md) |
+| leetcode | hard | 0023. merge k sorted lists | Java | [Solution.java](leetcode/java/hard/0023-merge-k-sorted-lists/Solution.java) | [notes.md](leetcode/java/hard/0023-merge-k-sorted-lists/notes.md) |
